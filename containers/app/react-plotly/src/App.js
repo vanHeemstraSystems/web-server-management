@@ -31,7 +31,7 @@ const json = {
   'boolean': true,
   'null': null,
   'number': 'four',
-  'object': {'a': 'b', 'c': 'd'},
+  'object': { 'a': 'b', 'c': 'd' },
   'string': 'Hello World'
 };
 
@@ -41,7 +41,20 @@ class App extends Component {
   state = {
     schema,
     text: JSON.stringify(json, null, 2),
-    mode: 'tree'
+    mode: 'tree',
+    data: [
+      {
+        x: [1, 2, 3],
+        y: [2, 6, 3],
+        type: 'scatter',
+        mode: 'lines+markers',
+        marker: { color: 'red' },
+      },
+      { type: 'bar', x: [1, 2, 3], y: [2, 5, 3] },
+    ],
+    layout: { width: 320, height: 240, title: 'A Fancy Plot' },
+    frames: [],
+    config: {}
   };
 
   render() {
@@ -57,13 +70,13 @@ class App extends Component {
             </select>
           </div>
           <JSONEditorReact
-              schema={this.state.schema}
-              text={this.state.text}
-              mode={this.state.mode}
-              modes={modes}
-              indentation={4}
-              onChangeText={this.onChangeText}
-              onModeChange={this.onModeChange}
+            schema={this.state.schema}
+            text={this.state.text}
+            mode={this.state.mode}
+            modes={modes}
+            indentation={4}
+            onChangeText={this.onChangeText}
+            onModeChange={this.onModeChange}
           />
           <div className="code">
             <pre>
@@ -73,18 +86,14 @@ class App extends Component {
             </pre>
           </div>
           <div className="plot">
-            <Plot 
-            data={[
-              {
-                x: [1,2,3],
-                y: [2,6,3],
-                type: 'scatter',
-                mode: 'lines+markers',
-                marker: {color: 'red'},
-              },
-              { type: 'bar', x: [1,2,3], y: [2,5,3]},
-            ]} 
-            layout={{width: 320, height: 240, title: 'A Fancy Plot'}}/>
+            <Plot
+              data={this.state.data}
+              layout={this.state.layout}
+              frames={this.state.frames}
+              config={this.state.config}
+              onInitialized={(figure) => this.setState(figure)}
+              onUpdate={(figure) => this.setState(figure)}
+            />
           </div>
         </div>
       </div>
