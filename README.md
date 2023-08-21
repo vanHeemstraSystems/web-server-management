@@ -3,6 +3,8 @@ plotly-reactjs
 
 Based on "React Plotly.js in JavaScript" https://plotly.com/javascript/react/
 
+Based on "react-ploty.js" at https://github.com/plotly/react-plotly.js
+
 How to use the Plotly.js React component.
 
 ## 100 - Introduction
