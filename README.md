@@ -9,6 +9,8 @@ Based on "create-react-app" at https://github.com/facebook/create-react-app
 
 Based on "JSON Editor" at https://github.com/josdejong/jsoneditor
 
+Based on "Getting started with React Query" at https://hasura.io/blog/getting-started-with-react-query/
+
 How to use the Plotly.js React component.
 
 ## 100 - Introduction
