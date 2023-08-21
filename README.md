@@ -11,6 +11,8 @@ Based on "JSON Editor" at https://github.com/josdejong/jsoneditor
 
 Based on "Getting started with React Query" at https://hasura.io/blog/getting-started-with-react-query/
 
+Based on "How to Add a JSON Editor to a React + Next.js Application" at https://levelup.gitconnected.com/simplest-way-to-add-json-editor-to-nextjs-application-6baa71b5b4dd
+
 How to use the Plotly.js React component.
 
 ## 100 - Introduction
