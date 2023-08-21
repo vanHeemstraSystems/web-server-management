@@ -5,6 +5,10 @@ Based on "React Plotly.js in JavaScript" https://plotly.com/javascript/react/
 
 Based on "react-ploty.js" at https://github.com/plotly/react-plotly.js
 
+Based on "create-react-app" at https://github.com/facebook/create-react-app
+
+Based on "JSON Editor" at https://github.com/josdejong/jsoneditor
+
 How to use the Plotly.js React component.
 
 ## 100 - Introduction
