@@ -2,65 +2,90 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import JSONEditorReact from './components/JSONEditorReact';
 import './App.css';
-import fetch from 'isomorphic-fetch';
+// import fetch from 'isomorphic-fetch';
 import Plot from 'react-plotly.js';
 
-
-const schema = {
-  title: 'Example Schema',
-  type: 'object',
-  properties: {
-    array: {
-      type: 'array',
-      items: {
-        type: 'number'
+// To Do: make below the result from a GraphQL query:
+let result = {
+  schema: {
+    title: 'Plotly Schema',
+    type: 'object',
+    properties: {
+      modes: {
+        type: 'array',
+        items: {
+          type: 'string'
+        }
+      },
+      data: {
+        type: 'array',
+        items: {
+          type: 'object'
+        }
+      },
+      layout: {
+        type: 'object',
+        items: {
+          type: 'array',
+        }
+      },
+      frames: {
+        type: 'array',
+        items: {
+          type: 'string'
+        }
+      },
+      config: {
+        type: 'object',
+        items: {
+          type: 'string'
+        }
       }
     },
-    boolean: {
-      type: 'boolean'
-    },
-    number: {
-      type: 'number'
-    }
+    required: ['modes', 'data', 'layout', 'frames', 'config']
   },
-  required: ['array', 'string', 'boolean']
-};
+  text: {
+    'modes': ['tree', 'form', 'view', 'code', 'text'],
+    'data': [
+      { 'x': [1, 2, 3], 'y': [2, 5, 3], 'type': 'scatter', 'mode': 'lines+markers', 'marker': { color: 'red' } }, { 'type': 'bar', x: [1, 2, 3], y: [2, 5, 3] }
+    ],
+    'layout': { 'width': 320, 'height': 240, 'title': 'Net Worth' },
+    'frames': [],
+    'config': {}
+  },
+  modes: ['tree', 'form', 'view', 'code', 'text'],
+  data: [
+    {
+      x: [1, 2, 3],
+      y: [2, 5, 3],
+      type: 'scatter',
+      mode: 'lines+markers',
+      marker: { color: 'red' },
+    },
+    { type: 'bar', x: [1, 2, 3], y: [2, 5, 3] },
+  ],
+  layout: { width: 320, height: 240, title: 'Net Worth' },
+  frames: [],
+  config: {}
+}
 
-const json = {
-  'array': [1, 2, 3],
-  'boolean': true,
-  'null': null,
-  'number': 'four',
-  'object': { 'a': 'b', 'c': 'd' },
-  'string': 'Hello World'
-};
-
-const modes = ['tree', 'form', 'view', 'code', 'text'];
+let modes = result.modes;
 
 class App extends Component {
   state = {
-    schema,
-    text: JSON.stringify(json, null, 2),
+    schema: result.schema,
+    text: JSON.stringify(result.text, null, 2),
     mode: 'tree',
-    data: [
-      {
-        x: [1, 2, 3],
-        y: [2, 5, 3],
-        type: 'scatter',
-        mode: 'lines+markers',
-        marker: { color: 'red' },
-      },
-      { type: 'bar', x: [1, 2, 3], y: [2, 5, 3] },
-    ],
-    layout: { width: 320, height: 240, title: 'A Fancy Plot' },
-    frames: [],
-    config: {}
+    data: result.data,
+    layout: result.layout,
+    frames: result.frames,
+    config: result.config
   };
 
   render() {
     return (
       <div className="app">
-        <h1>JSONEditor React advanced demo</h1>
+        <h1>Plotly - ReactJS</h1>
         <div className="contents">
           <div className="mode">
             mode: <select value={this.state.mode} onChange={this.onModeChangeSelect}>
