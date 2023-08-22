@@ -15,6 +15,30 @@ Based on "How to Add a JSON Editor to a React + Next.js Application" at https://
 
 Based on "Map Management" at https://github.com/vanHeemstraSystems/map-management
 
+Based on "Create a Next.js App" at https://nextjs.org/learn/basics/create-nextjs-app
+
+Based on "src Directory" at https://nextjs.org/docs/pages/building-your-application/configuring/src-directory
+
+Based on "Moving Pages folder in Next.js application to src folder" at https://stackoverflow.com/questions/69690382/moving-pages-folder-in-next-js-application-to-src-folder
+
+Based on "How to Use State in Functional React Components" at https://www.howtogeek.com/devops/how-to-use-state-in-functional-react-components/
+
+Based on "How to Style Your React Apps with CSS Like a Pro" at https://www.freecodecamp.org/news/style-react-apps-with-css/
+
+Based on "States and componentDidMount() in functional components with Hooks." at https://medium.com/@t93/states-and-componentdidmount-in-functional-components-with-hooks-cac5484d22ad
+
+Based on "HTML React Parser" at https://github.com/remarkablemark/html-react-parser/blob/master/examples/create-react-app-typescript/src/App.tsx
+
+Based on "React Class Components to Functional Components With Hooks" at https://catalins.tech/react-class-components-to-functional-components-with-hooks/
+
+Based on "How to fix TypeError: Converting circular structure to JSON in JS?" at https://codedamn.com/news/javascript/how-to-fix-typeerror-converting-circular-structure-to-json-in-js
+
+Based on "Unable to import svg files in typescript" at https://stackoverflow.com/questions/44717164/unable-to-import-svg-files-in-typescript
+
+Based on "How to import SVGs into your NextJS application" at https://frontend-digest.com/how-to-import-svgs-into-nextjs-8ec6100e613f
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
 How to use the Plotly.js React component.
 
 ## 100 - Introduction
