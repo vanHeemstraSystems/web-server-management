@@ -1,6 +1,12 @@
 plot-management
 # Plot Management
 
+Can be read as "Plot Management" at https://app.gitbook.com/s/Rs3XPuVclvoj92Exb9AA/
+
+Can be browsed as "Plot Management" at https://vanheemstrasystems.github.io/plot-management/
+
+Documentation of this repository is automatically done with Quarto using GitHub Actions as described at https://github.com/vanHeemstraSystems/quarto-to-github-pages/blob/main/300/300/README.md
+
 Based on "React Plotly.js in JavaScript" https://plotly.com/javascript/react/
 
 Based on "react-ploty.js" at https://github.com/plotly/react-plotly.js
