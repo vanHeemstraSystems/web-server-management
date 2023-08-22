@@ -1,0 +1,10 @@
+node_modules
+docker-compose.dev.yml
+docker-compose.prod.yml
+.env
+.npmrc
+secrets/.database_password
+secrets/.proxy_password
+secrets/.postgres_password
+secrets/.pgadmin_password
+secrets/.hasura_password

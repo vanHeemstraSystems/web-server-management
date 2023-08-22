@@ -1,0 +1,24 @@
+ARG IMAGE_REPOSITORY
+# pull official base image, see https://hub.docker.com/r/jc21/nginx-proxy-manager
+FROM ${IMAGE_REPOSITORY}/jc21/nginx-proxy-manager:latest
+
+# See https://stackoverflow.com/questions/29261811/use-docker-compose-env-variable-in-dockerbuild-file
+ARG PROXY_USER
+ARG PROXY_PASSWORD
+ARG PROXY_FQDN
+ARG PROXY_PORT
+ARG DISABLE_IPV6
+
+ENV HTTP_PROXY="http://${PROXY_USER}:${PROXY_PASSWORD}@${PROXY_FQDN}:${PROXY_PORT}"
+ENV HTTPS_PROXY="http://${PROXY_USER}:${PROXY_PASSWORD}@${PROXY_FQDN}:${PROXY_PORT}"
+
+ENV DISABLE_IPV6="${DISABLE_IPV6}"
+
+# set working directory
+# WORKDIR /etc/nginx
+
+# add config
+# COPY ./nginx.dev.conf ./conf.d/default.conf
+
+# expose port
+EXPOSE 80 81 443

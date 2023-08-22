@@ -1,0 +1,7 @@
+node_modules
+.npmrc
+config.yaml
+hasura-metadata-dev/hasura_metadata.json
+hasura-metadata-prod/hasura_metadata.json
+hasura-migrations-dev/hasura_migrations.json
+hasura-migrations-prod/hasura_migrations.json

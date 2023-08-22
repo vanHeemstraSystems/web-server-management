@@ -1,0 +1,71 @@
+{
+  "resource_version": 9,
+  "metadata": {
+    "version": 3,
+    "sources": [
+      {
+        "name": "map-management-dev",
+        "kind": "postgres",
+        "tables": [
+          {
+            "table": {
+              "name": "maps_view",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "nodes",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "map_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "nodes_view",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "links",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "map_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "links_view",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "nodes_view",
+              "schema": "public"
+            }
+          },
+          {
+            "table": {
+              "name": "links_view",
+              "schema": "public"
+            }
+          }
+        ],
+        "configuration": {
+          "connection_info": {
+            "database_url": "postgresql://USER:PASSWORD@postgresql:5432/db",
+            "isolation_level": "read-committed",
+            "use_prepared_statements": false
+          }
+        }
+      }
+    ]
+  }
+}

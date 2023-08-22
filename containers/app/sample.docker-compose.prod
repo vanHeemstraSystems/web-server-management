@@ -1,0 +1,226 @@
+version: "3.7"
+
+secrets:
+  database_password:
+    file: ./secrets/.database_password
+  proxy_password:
+    file: ./secrets/.proxy_password  
+
+# See https://stackoverflow.com/questions/29261811/use-docker-compose-env-variable-in-dockerbuild-file
+services:
+
+  homer:
+    secrets:
+      - proxy_password
+    build:
+      context: ./homer
+      dockerfile: Dockerfile.prod
+      args: # from env_file
+        UNIQUE_NAMESPACE: ${UNIQUE_NAMESPACE}
+        IMAGE_REPOSITORY: ${IMAGE_REPOSITORY}
+        PROXY_USER: ${PROXY_USER}
+        PROXY_PASSWORD: ${PROXY_PASSWORD}
+        PROXY_FQDN: ${PROXY_FQDN}
+        PROXY_PORT: ${PROXY_PORT}
+        NODE_ENV: production
+    env_file:
+      - .env
+    container_name: ${UNIQUE_NAMESPACE}-homer-prod
+    security_opt:
+      - no-new-privileges:true
+    privileged: true
+    restart: unless-stopped     
+    ports:
+      - "8092:8080"
+    volumes:
+      - ./homer/config:/www/assets
+    depends_on:
+     - "pgadmin"
+     - "hasura"      
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.prod
+      args: # from env_file
+        UNIQUE_NAMESPACE: ${UNIQUE_NAMESPACE}
+        IMAGE_REPOSITORY: ${IMAGE_REPOSITORY}
+        PROXY_USER: ${PROXY_USER}
+        PROXY_PASSWORD: ${PROXY_PASSWORD}
+        PROXY_FQDN: ${PROXY_FQDN}
+        PROXY_PORT: ${PROXY_PORT}    
+    env_file:
+      - .env
+    container_name: ${UNIQUE_NAMESPACE}-nginx-prod
+    extra_hosts:
+      - "host.docker.internal:host-gateway"    
+    security_opt:
+      - no-new-privileges:true
+    privileged: true
+    ports:
+      - "80:80"
+    depends_on:
+      - "homer"
+
+  proxy:
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile.dev
+      args: # from env_file
+        UNIQUE_NAMESPACE: ${UNIQUE_NAMESPACE}
+        IMAGE_REPOSITORY: ${IMAGE_REPOSITORY}
+        PROXY_USER: ${PROXY_USER}
+        PROXY_PASSWORD: ${PROXY_PASSWORD}
+        PROXY_FQDN: ${PROXY_FQDN}
+        PROXY_PORT: ${PROXY_PORT}
+        DISABLE_IPV6: ${DISABLE_IPV6}
+    env_file:
+      - .env     
+    container_name: ${UNIQUE_NAMESPACE}-proxy-dev
+    security_opt:
+      - no-new-privileges:true
+    privileged: true
+    restart: unless-stopped
+    ports:
+      - "8080:80" # Public HTTP Port
+      - "8081:81" # Admin Web Port
+      - "8443:443" # Public HTTPS Port
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+
+  postgresql:
+    build:
+      context: ./postgresql
+      dockerfile: Dockerfile.prod
+      args: # from env_file
+        UNIQUE_NAMESPACE: ${UNIQUE_NAMESPACE}
+        IMAGE_REPOSITORY: ${IMAGE_REPOSITORY}
+        PROXY_USER: ${PROXY_USER}
+        PROXY_PASSWORD: ${PROXY_PASSWORD}
+        PROXY_FQDN: ${PROXY_FQDN}
+        PROXY_PORT: ${PROXY_PORT}
+        POSTGRES_USER: ${POSTGRES_USER_PROD}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_PROD}
+        POSTGRES_DB: ${POSTGRES_DB_PROD}
+        POSTGRES_URL: ${POSTGRES_URL_PROD}
+    env_file:
+      - .env     
+    container_name: ${UNIQUE_NAMESPACE}-postgresql-prod
+    security_opt:
+      - no-new-privileges:true
+    privileged: true
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"    
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data # remove Docker volume if you want to start postgres with database initialization      
+      - ./postgresql/sql/create_tables_prod.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./postgresql/sql/fill_tables_prod.sql:/docker-entrypoint-initdb.d/fill_tables.sql
+      - ./postgresql/sql/update_tables_prod.sql:/docker-entrypoint-initdb.d/update_tables.sql
+      - ./postgresql/sql/create_views_prod.sql:/docker-entrypoint-initdb.d/create_views.sql
+
+  pgadmin:
+    build:
+      context: ./pgadmin
+      dockerfile: Dockerfile.dev
+      args: # from env_file
+        UNIQUE_NAMESPACE: ${UNIQUE_NAMESPACE}
+        IMAGE_REPOSITORY: ${IMAGE_REPOSITORY}
+        PROXY_USER: ${PROXY_USER}
+        PROXY_PASSWORD: ${PROXY_PASSWORD}
+        PROXY_FQDN: ${PROXY_FQDN}
+        PROXY_PORT: ${PROXY_PORT}
+        PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL_PROD}
+        PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD_PROD}
+        PGADMIN_LISTEN_ADDRESS: ${PGADMIN_LISTEN_ADDRESS_PROD}
+        PGADMIN_LISTEN_PORT: ${PGADMIN_LISTEN_PORT_PROD}  
+    env_file:
+      - .env     
+    container_name: ${UNIQUE_NAMESPACE}-pgadmin-dev
+    # BELOW WON'T WORK WITH PGADMIN
+    # security_opt:
+    #  - no-new-privileges:true
+    privileged: true
+    restart: unless-stopped
+    # network_mode: host # This prevents the port to show as Published Port in Portainer
+    ports:
+      - "7020:7020"
+    volumes:
+      - /var/lib/pgadmin        
+    depends_on:
+      - "postgresql"
+
+  hasura:
+    build:
+      context: ./harusa
+      dockerfile: Dockerfile.dev
+      args: # from env_file
+        UNIQUE_NAMESPACE: ${UNIQUE_NAMESPACE}
+        IMAGE_REPOSITORY: ${IMAGE_REPOSITORY}
+        PROXY_USER: ${PROXY_USER}
+        PROXY_PASSWORD: ${PROXY_PASSWORD}
+        PROXY_FQDN: ${PROXY_FQDN}
+        PROXY_PORT: ${PROXY_PORT}
+        HASURA_GRAPHQL_METADATA_DATABASE_URL: ${HASURA_GRAPHQL_METADATA_DATABASE_URL_DEV}
+        HASURA_GRAPHQL_MIGRATIONS_DIR: ${HASURA_GRAPHQL_MIGRATIONS_DIR_PROD}
+        HASURA_GRAPHQL_METADATA_DIR: ${HASURA_GRAPHQL_METADATA_DIR_PROD}
+        HASURA_GRAPHQL_DATABASE_URL: ${HASURA_GRAPHQL_DATABASE_URL_PROD}     
+        HASURA_GRAPHQL_ENABLE_CONSOLE: ${HASURA_GRAPHQL_ENABLE_CONSOLE_DEV}
+        HASURA_GRAPHQL_DEV_MODE: ${HASURA_GRAPHQL_DEV_MODE_DEV}
+        HASURA_GRAPHQL_ENABLED_LOG_TYPES: ${HASURA_GRAPHQL_ENABLED_LOG_TYPES_DEV}
+        HASURA_GRAPHQL_CONSOLE_ASSETS_DIR: ${HASURA_GRAPHQL_CONSOLE_ASSETS_DIR_DEV}
+        HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET_DEV}
+    env_file:
+      - .env     
+    container_name: ${UNIQUE_NAMESPACE}-hasura-dev  
+    security_opt:
+     - no-new-privileges:true
+    privileged: true
+    restart: unless-stopped
+    # network_mode: host # This prevents the port to show as Published Port in Portainer    
+    ports:
+      - "9070:8080"
+    volumes:
+      - ./hasura/hasura-migrations-prod:/hasura-migrations
+      - ./hasura/hasura-metadata-prod:/hasura-metadata  
+    depends_on:
+      - "postgresql"
+
+  plotly:
+    secrets:
+      - proxy_password
+    build:
+      context: ./plotly
+      dockerfile: Dockerfile.prod
+      args: # from env_file
+        UNIQUE_NAMESPACE: ${UNIQUE_NAMESPACE}
+        IMAGE_REPOSITORY: ${IMAGE_REPOSITORY}
+        PROXY_USER: ${PROXY_USER}
+        PROXY_PASSWORD: ${PROXY_PASSWORD}
+        PROXY_FQDN: ${PROXY_FQDN}
+        PROXY_PORT: ${PROXY_PORT}
+        NODE_ENV: development
+    env_file:
+      - .env
+    container_name: ${UNIQUE_NAMESPACE}-plotly-prod
+    security_opt:
+      - no-new-privileges:true
+    privileged: true
+    restart: unless-stopped     
+    ports:
+      - "3000:3000"      
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  data:
+    name: data
+  pgdata:
+    name: pgdata    
