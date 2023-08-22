@@ -1,3 +1,5 @@
+[![Quarto Publish](https://github.com/vanHeemstraSystems/plot-management/actions/workflows/publish.yml/badge.svg)](https://github.com/vanHeemstraSystems/plot-management/actions/workflows/publish.yml)
+
 plot-management
 # Plot Management
 
