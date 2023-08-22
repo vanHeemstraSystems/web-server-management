@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@apollo/client": "^3.8.1",
     "create-react-app": "^5.0.1",
     "typescript": "^5.1.6"
   }
