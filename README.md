@@ -187,7 +187,7 @@ Watch https://www.youtube.com/watch?v=ZGKQ0U18USU
 
 Bookmark https://hasura.io/learn/graphql/hasura/introduction/?pg=oss-console&plcmt=onboarding-checklist
 
-### Define the Schema in Postgres for Our Map Management Service
+### Define the Schema in Postgres for Our Plot Management Service
 
 The schema of our plot management service is based on Plotly and should follow a nesting alike below:
 
