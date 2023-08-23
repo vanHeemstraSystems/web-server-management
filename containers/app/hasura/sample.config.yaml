@@ -1,7 +1,0 @@
-version: 3
-endpoint: http://172.30.123.115:9070
-metadata_directory: hasura-metadata-dev
-admin_secret: == YOUR HASURA GRAPHQL ADMIN SECRET GOES HERE ==
-actions:
-  kind: synchronous
-  handler_webhook_baseurl: http://localhost:3000
