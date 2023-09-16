@@ -1,1 +1,1 @@
-Sitemap: https://github.com/vanHeemstraSystems/plot-management/sitemap.xml
+Sitemap: https://github.com/vanHeemstraSystems/knowledge-management/sitemap.xml
