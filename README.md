@@ -11,6 +11,8 @@ Documentation of this repository is automatically done with Quarto using GitHub 
 
 Based on "Instagraph" at https://github.com/yoheinakajima/instagraph
 
+Based on "Stack Exchange" at https://stackexchange.com/sites
+
 Based on "create-react-app" at https://github.com/facebook/create-react-app
 
 Based on "JSON Editor" at https://github.com/josdejong/jsoneditor
