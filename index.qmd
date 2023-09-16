@@ -1,5 +1,5 @@
 ---
-title: "Plot Management"
+title: "Knowledge Management"
 ---
 
 This is a Quarto website.
