@@ -1,3 +1,3 @@
 # Table of contents
 
-* [Plot Management](README.md)
+* [Knowledge Management](README.md)
