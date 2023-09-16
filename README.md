@@ -1,17 +1,15 @@
-[![Quarto Publish](https://github.com/vanHeemstraSystems/plot-management/actions/workflows/publish.yml/badge.svg)](https://github.com/vanHeemstraSystems/plot-management/actions/workflows/publish.yml)
+[![Quarto Publish](https://github.com/vanHeemstraSystems/knowledge-management/actions/workflows/publish.yml/badge.svg)](https://github.com/vanHeemstraSystems/knowledge-management/actions/workflows/publish.yml)
 
-plot-management
-# Plot Management
+knowledge-management
+# Knowledge Management
 
-Can be read as "Plot Management" at https://app.gitbook.com/s/Rs3XPuVclvoj92Exb9AA/
+Can be read as "Knowledge Management" at https://app.gitbook.com/s/Rs3XPuVclvoj92Exb9AA/
 
-Can be browsed as "Plot Management" at https://vanheemstrasystems.github.io/plot-management/
+Can be browsed as "Knowledge Management" at https://vanheemstrasystems.github.io/knowledge-management/
 
 Documentation of this repository is automatically done with Quarto using GitHub Actions as described at https://github.com/vanHeemstraSystems/quarto-to-github-pages/blob/main/300/300/README.md
 
-Based on "React Plotly.js in JavaScript" https://plotly.com/javascript/react/
-
-Based on "react-ploty.js" at https://github.com/plotly/react-plotly.js
+Based on "Instagraph" at https://github.com/yoheinakajima/instagraph
 
 Based on "create-react-app" at https://github.com/facebook/create-react-app
 
