@@ -1,0 +1,10 @@
+{
+    // "plantuml.jarArgs": [
+    //    "-DRELATIVE_INCLUDE=."
+    // ],
+    "plantuml.commandArgs": [],
+    "plantuml.diagramsRoot": "containers/app/instagraph/docs/diagrams",
+    "plantuml.exportOutDir": "containers/app/instagraph/docs/diagrams/out",
+    // "plantuml.exportFormat": "png",
+    "plantuml.exportSubFolder": true
+}
