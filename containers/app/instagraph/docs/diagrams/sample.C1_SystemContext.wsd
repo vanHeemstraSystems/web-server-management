@@ -1,0 +1,36 @@
+@startuml C1_MyApp_SystemContext
+'Alt + D to preview
+!pragma revision 1
+
+'C4
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Context.puml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+'Azure
+'Search the full list here: <https://github.com/RicardoNiepel/Azure-PlantUML/blob/master/AzureSymbols.md#azure-symbols>
+!define Azure https://raw.githubusercontent.com/RicardoNiepel/Azure-PlantUML/master/dist
+!includeurl Azure/AzureCommon.puml
+!includeurl Azure/AzureC4Integration.puml
+!includeurl Azure/Web/AzureWebApp.puml
+
+'Comment/uncomment the next line for simplified view of Azure sprites
+'!includeurl Azure/AzureSimplified.puml
+
+'FontAwesome and other icon sets
+' Search the full list here: <https://github.com/tupadr3/plantuml-icon-font-sprites#icon-sets>
+!define ICONURL https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v2.4.0
+!includeurl ICONURL/font-awesome-5/file_excel.puml
+
+title [System Context] My Application
+
+'left to right direction
+
+Person(personAlias, "Label", "Optional Description")
+AzureWebApp(containerAlias, "Label", "Technology", "Optional Description")
+Component(systemAlias, "Label", "Technology", "Optional Description", $sprite=file_excel)
+
+personAlias --> containerAlias : Uses\n[Optional Technology]
+containerAlias -right-> systemAlias #Purple : Generates
+
+@enduml

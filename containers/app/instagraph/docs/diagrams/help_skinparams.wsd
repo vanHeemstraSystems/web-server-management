@@ -1,0 +1,4 @@
+@startuml
+'Alt + D to see all available skinparam options
+help skinparams
+@enduml
