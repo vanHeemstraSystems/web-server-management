@@ -119,7 +119,7 @@ Run as follows:
 
 ```
 $ cd containers/app
-$ docker-compose --file docker-compose.dev.yml --project-name plot-management-dev up --build -d
+$ docker-compose --file docker-compose.dev.yml --project-name knowledge-management-dev up --build -d
 ```
 
 **NOTE**: If you get the following error when browsing the Plotly service: 
@@ -142,7 +142,7 @@ Right-Click Servers > Register ... Server:
 
 In tab **General**:
 
-- Name: Use a name like "plot-management-dev" (if for development) - REQUIRED
+- Name: Use a name like "knowledge-management-dev" (if for development) - REQUIRED
 
 In tab **Connection**:
 
@@ -187,9 +187,9 @@ Watch https://www.youtube.com/watch?v=ZGKQ0U18USU
 
 Bookmark https://hasura.io/learn/graphql/hasura/introduction/?pg=oss-console&plcmt=onboarding-checklist
 
-### Define the Schema in Postgres for Our Plot Management Service
+### Define the Schema in Postgres for Our Knowledge Management Service
 
-The schema of our plot management service is based on Plotly and should follow a nesting alike below:
+The schema of our knowledge management service is based on Plotly and should follow a nesting alike below:
 
 ```
 	[
