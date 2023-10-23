@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Knowledge Management",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -12,12 +19,5 @@
     "title": "Table of contents",
     "section": "",
     "text": "Table of contents\n\nKnowledge Management"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Knowledge Management",
-    "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
   }
 ]

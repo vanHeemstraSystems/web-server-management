@@ -162,7 +162,7 @@ In tab **Connection**:
 
 See http://hostname:hasura-port-number/console/data/manage/connect
 
-- Database Display Name: **Plot Management - Dev** (for development)
+- Database Display Name: **Knowledge Management - Dev** (for development)
 - Data Source Driver: **Postgres**
 - Connect Database Via: **Database URL**
 - Database URL: **postgresql://username:password@hostname:5432/databasename**, use the value of HASURA_GRAPHQL_DATABASE_URL_DEV/PROD as specified in .env file
