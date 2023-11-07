@@ -83,6 +83,8 @@ Based on "SQL Views With PostgreSQL" at https://towardsdatascience.com/sql-views
 
 Based on "How to use GraphQL Alias and Aggregation?" at https://bitquery.io/blog/graphql-alias-and-aggregation
 
+Based on "Caddy Server" at https://caddyserver.com/
+
 **NOTE**: Encode your (proxy) password to avoid clashes with unsupported characters (such as '@'), using https://meyerweb.com/eric/tools/dencoder/
 
 **NOTE**: We set the POSTGRES_DB environment variable in the docker file, otherwise it will use the POSTGRES_USER as database name.
