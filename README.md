@@ -1,11 +1,11 @@
-[![Quarto Publish](https://github.com/vanHeemstraSystems/knowledge-management/actions/workflows/publish.yml/badge.svg)](https://github.com/vanHeemstraSystems/knowledge-management/actions/workflows/publish.yml)
+[![Quarto Publish](https://github.com/vanHeemstraSystems/knowledge-management/actions/workflows/publish.yml/badge.svg)](https://github.com/vanHeemstraSystems/web-server-management/actions/workflows/publish.yml)
 
-knowledge-management
-# Knowledge Management
+web-server-management
+# Web Server Management
 
-Can be read as "Knowledge Management" at https://app.gitbook.com/s/Rs3XPuVclvoj92Exb9AA/
+Can be read as "Web Server Management" at https://app.gitbook.com/s/Rs3XPuVclvoj92Exb9AA/
 
-Can be browsed as "Knowledge Management" at https://vanheemstrasystems.github.io/knowledge-management/
+Can be browsed as "Web Server Management" at https://vanheemstrasystems.github.io/web-server-management/
 
 Documentation of this repository is automatically done with Quarto using GitHub Actions as described at https://github.com/vanHeemstraSystems/quarto-to-github-pages/blob/main/300/300/README.md
 
